@@ -147,7 +147,68 @@
 
   <img src="https://github.com/Per-Arredondo/clinica_medica/blob/main/ChatGPT%20Image%202%20abr%202025,%2016_04_57.png?raw=true" alt="Portada de presentación" class="portada">
 
-  <!-- Secciones informativas omitidas para brevedad -->
+  <div class="section">
+    <h2>¿Quiénes Somos?</h2>
+    <p>Somos una clínica comprometida con el bienestar de la comunidad. Nuestro equipo multidisciplinario brinda atención con calidez, ética y profesionalismo.</p>
+  </div>
+
+  <div class="section">
+    <h2>Misión</h2>
+    <p>Brindar atención médica integral, accesible y de calidad para mejorar la salud y calidad de vida de nuestras y nuestros pacientes.</p>
+  </div>
+
+  <div class="section">
+    <h2>Visión</h2>
+    <p>Ser una clínica referente por su excelencia médica, trato humano y compromiso con la salud preventiva y comunitaria.</p>
+  </div>
+
+  <div class="section">
+    <h2>Valores</h2>
+    <ul>
+      <li>Ética profesional</li>
+      <li>Respeto a la diversidad</li>
+      <li>Empatía</li>
+      <li>Responsabilidad</li>
+      <li>Compromiso social</li>
+    </ul>
+  </div>
+
+  <h2>Especialidades Médicas</h2>
+
+  <div class="especialidad" onclick="mostrarInfo(this)">
+    <h3>🩺 Medicina General <span class="flecha">▶</span></h3>
+    <div class="descripcion">
+      Atención integral: chequeos, control de enfermedades crónicas, certificados médicos y primeros diagnósticos.
+    </div>
+  </div>
+
+  <div class="especialidad" onclick="mostrarInfo(this)">
+    <h3>👩‍⚕️ Ginecología <span class="flecha">▶</span></h3>
+    <div class="descripcion">
+      Atención a la salud reproductiva de la mujer, chequeos ginecológicos, planificación familiar y control prenatal.
+    </div>
+  </div>
+
+  <div class="especialidad" onclick="mostrarInfo(this)">
+    <h3>🚹 Urología <span class="flecha">▶</span></h3>
+    <div class="descripcion">
+      Diagnóstico y tratamiento de enfermedades del aparato urinario y del sistema reproductor masculino.
+    </div>
+  </div>
+
+  <div class="especialidad" onclick="mostrarInfo(this)">
+    <h3>👶 Pediatría <span class="flecha">▶</span></h3>
+    <div class="descripcion">
+      Control del desarrollo infantil, revisiones médicas periódicas, vacunación y orientación para madres y padres.
+    </div>
+  </div>
+
+  <div class="especialidad" onclick="mostrarInfo(this)">
+    <h3>❤️ Cardiología <span class="flecha">▶</span></h3>
+    <div class="descripcion">
+      Evaluación y tratamiento de enfermedades del corazón y del sistema circulatorio. Electrocardiogramas y control de presión arterial.
+    </div>
+  </div>
 
   <form id="formulario">
     <h2>Agendar una Cita</h2>
@@ -220,7 +281,7 @@
         comentarios: document.getElementById("comentarios").value
       };
 
-      fetch("https://script.google.com/macros/s/AKfycbwqkIOnrvtAlrmEtrGKkGku2HvRWF5fkBIkEIxtMuOcVLEMJiTs28IfXWPCAhge6m1Kow/exe", {
+      fetch("https://script.google.com/macros/s/AKfycbwqkIOnrvtAlrmEtrGKkGku2HvRWF5fkBIkEIxtMuOcVLEMJiTs28IfXWPCAhge6m1Kow/exec", {
         method: "POST",
         body: JSON.stringify(datos)
       })
