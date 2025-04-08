@@ -252,6 +252,55 @@
     <div class="mensaje-exito" id="mensaje-exito">✅ Gracias, tu cita ha sido agendada.<br>⏳ Redirigiendo al inicio...<br>🎉 Te contactaremos pronto.</div>
   </form>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3xgwBDvE_wKO1eb1hkt8XuFYpmKMl5O4",
+      authDomain: "test-e1188.firebaseapp.com",
+      projectId: "test-e1188",
+      storageBucket: "test-e1188.firebasestorage.app",
+      messagingSenderId: "56445134087",
+      appId: "1:56445134087:web:27ee918bccee45b9a591a2",
+      measurementId: "G-8FY0JSEGQX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    document.getElementById("formulario").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const datos = {
+        nombre: document.getElementById("nombre").value,
+        telefono: document.getElementById("telefono").value,
+        email: document.getElementById("email").value,
+        sexo: document.getElementById("sexo").value,
+        especialidad: document.getElementById("especialidad").value,
+        fecha: document.getElementById("fecha").value,
+        hora: document.getElementById("hora").value,
+        comentarios: document.getElementById("comentarios").value,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await addDoc(collection(db, "citas"), datos);
+        document.getElementById("mensaje-exito").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("mensaje-exito").style.display = "none";
+        }, 5000);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById("formulario").reset();
+      } catch (error) {
+        console.error("Error al guardar la cita: ", error);
+        alert("Ocurrió un error al guardar la cita.");
+      }
+    });
+  </script>
+
   <script>
     function mostrarInfo(elemento) {
       document.querySelectorAll(".descripcion").forEach(desc => {
@@ -266,39 +315,6 @@
       descripcion.classList.toggle("activa");
       flecha.classList.toggle("girar");
     }
-
-    document.getElementById("formulario").addEventListener("submit", function(e){
-      e.preventDefault();
-
-      const datos = {
-        nombre: document.getElementById("nombre").value,
-        telefono: document.getElementById("telefono").value,
-        email: document.getElementById("email").value,
-        sexo: document.getElementById("sexo").value,
-        especialidad: document.getElementById("especialidad").value,
-        fecha: document.getElementById("fecha").value,
-        hora: document.getElementById("hora").value,
-        comentarios: document.getElementById("comentarios").value
-      };
-
-      fetch("https://script.google.com/macros/s/AKfycbwqkIOnrvtAlrmEtrGKkGku2HvRWF5fkBIkEIxtMuOcVLEMJiTs28IfXWPCAhge6m1Kow/exec", {
-        method: "POST",
-        body: JSON.stringify(datos)
-      })
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("mensaje-exito").style.display = "block";
-        setTimeout(() => {
-          document.getElementById("mensaje-exito").style.display = "none";
-        }, 5000);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.getElementById("formulario").reset();
-      })
-      .catch(error => {
-        alert("Ocurrió un error al guardar la cita.");
-        console.error(error);
-      });
-    });
   </script>
 
 </body>
